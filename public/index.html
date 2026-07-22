@@ -1,1 +1,164 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HỆ THỐNG THỬ NGHIỆM LỖ HỔNG </title>
+    <style>
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            text-align: center; 
+            background-color: #0d0f12; 
+            color: #ffffff;
+            margin-top: 40px; 
+            padding: 0 20px;
+        }
+        .secure-container {
+            max-width: 700px;
+            margin: 0 auto;
+            background: #161b22;
+            padding: 40px;
+            border-radius: 16px;
+            border: 1px solid #30363d;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+        .warning-box {
+            display: inline-block;
+            border: 2px solid #ff3333;
+            padding: 10px 30px;
+            border-radius: 8px;
+            color: #ff3333; 
+            font-size: 30px;
+            font-weight: 900;
+            text-transform: uppercase; 
+            letter-spacing: 2px;
+            margin-bottom: 25px;
+            box-shadow: 0 0 15px rgba(255, 51, 51, 0.2);
+            animation: pulse 2s infinite;
+        }
+        .subtitle {
+            color: #c9d1d9;
+            font-size: 19px;
+            font-weight: 600;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+        .disclaimer-section {
+            border-top: 1px solid #21262d;
+            padding-top: 20px;
+            margin-bottom: 30px;
+        }
+        .disclaimer-title {
+            color: #8b949e;
+            font-size: 15px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+        .disclaimer-text {
+            color: #ff9800; 
+            font-size: 16px;
+            font-style: italic;
+            line-height: 1.5;
+        }
+        /* Dòng chữ đỏ mới thêm theo yêu cầu phía trên video */
+        .video-note {
+            color: #ff3333;
+            font-size: 16px;
+            font-weight: bold;
+            font-style: italic;
+            margin-bottom: 15px;
+        }
+        .media-block {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .media-card { 
+            background: #21262d; 
+            padding: 15px; 
+            border-radius: 12px; 
+            border: 1px solid #30363d;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .media-card:hover {
+            transform: scale(1.02);
+        }
+        .video-thumbnail { 
+            max-width: 100%;
+            width: 450px;
+            height: 250px; 
+            background: #000000;
+            border: 1px solid #484f58; 
+            border-radius: 8px; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .play-button {
+            width: 70px;
+            height: 50px;
+            background-color: rgba(255, 0, 0, 0.9);
+            border-radius: 15px;
+            position: relative;
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .play-button::after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 10px 0 10px 18px;
+            border-color: transparent transparent transparent #ffffff;
+            margin-left: 5px;
+        }
+        @keyframes pulse {
+            0% { box-shadow: 0 0 15px rgba(255, 51, 51, 0.2); }
+            50% { box-shadow: 0 0 25px rgba(255, 51, 51, 0.5); }
+            100% { box-shadow: 0 0 15px rgba(255, 51, 51, 0.2); }
+        }
+    </style>
+</head>
+<body>
 
+    <div class="secure-container">
+        <div class="warning-box">CẢNH BÁO (WARNING)</div>
+        <div class="subtitle">Trang web này thuộc sở hữu của cá nhân để thử nghiệm bảo mật hệ thống không phận sự miễn vào</div>
+        
+        <div class="disclaimer-section">
+            <div class="disclaimer-title">Lời miễn trừ trách nhiệm</div>
+            <div class="disclaimer-text">"tôi không chịu trách nghiệm cho cách hành vi hack hoặc tấn công website vì phạm pháp luật"</div>
+        </div>
+
+        <!-- Dòng chữ lưu ý màu đỏ nằm trong dấu ngoặc kép trên video -->
+        <div class="video-note">"lưu ý: dành cho ai không biết miễn trừ trách nghiệm là gì"</div>
+
+        <div class="media-block">
+            <a href="https://youtu.be/IJxOhJK9Xq4?si=9PoX2AwFbVlh4olm"target="_blank" style="text-decoration: none;">
+                <div class="media-card">
+                    <div class="video-thumbnail">
+                        <div class="play-button"></div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        fetch('/report-visitor', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ device: navigator.userAgent })
+        }).catch(err => console.log('Log completed.'));
+    </script>
+
+</body>
+</html>
