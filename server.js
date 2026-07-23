@@ -1,8 +1,7 @@
 const express = require('express');
 const path = require('path');
 const app = express();
-const port = 3000;
-
+const port = process.env.PORT || 3000;
 // Cấu hình để máy chủ đọc được dữ liệu JSON gửi từ web về
 app.use(express.json());
 
@@ -12,7 +11,7 @@ function getClientIp(req) {
 }
 
 // Lắng nghe yêu cầu ngầm từ trang web gửi lên
-app.post('/report-visitor', (express.json()), (req, res) => {
+app.post('/report-visitor', (req, res) => {
     let ip = getClientIp(req);
     // Định dạng lại IP nếu là IPv4 nội bộ
     if (ip === '::1' || ip === '::ffff:127.0.0.1') { ip = '127.0.0.1 (Localhost)'; }
